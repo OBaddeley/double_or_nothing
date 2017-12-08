@@ -17,20 +17,20 @@
    <% end %>
 
   <% if params[:locals] %>
-    <% if params[:locals][:die_roll] && params[:locals][:balance].to_i == 0 %>
+    <% if losing_role?(params[:locals]) %>
       <div> You rolled a <%= params[:locals][:die_roll] %> </div>
       <div> Your balance is now <%= params[:locals][:balance] %> </div>
       <div> No more rolls for you </div>
-    <% elsif params[:locals][:die_roll] && params[:locals][:balance].to_i > 0 %>
+    <% elsif winning_role?(params[:locals]) %>
       <div> You rolled a <%= params[:locals][:die_roll] %> </div>
       <div> Your balance is now <%= params[:locals][:balance] %> </div>
       <div>Try again!</div>
       <%= link_to "Roll the die", game_play_path(card_number: params[:locals][:card_number]), class: "button" %>
     <% elsif params[:locals][:card_number] %>
-     <h2>Woo lets roll!</h2>
-     <%= link_to "Roll the die", game_play_path(card_number: params[:locals][:card_number]), class: "button" %>
+      <h2>Woo lets roll!</h2>
+      <%= link_to "Roll the die", game_play_path(card_number: params[:locals][:card_number]), class: "button" %>
     <% else %>
-     <div class="two">Sorry your card is not valid</div>
+      <div class="two">Sorry your card is not valid</div>
     <% end %>
   <% end %>
 </div>
