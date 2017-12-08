@@ -4,15 +4,15 @@ module PointsBalance
 
   def self.debit(card_number)
     path = full_path('/balance_debit/:card_number', card_number)
-    result = Typhoeous.post(path)
-    data = JSON.parse(result)
+    result = Typhoeus.post(path)
+    data = JSON.parse(result.body)
     data[:balance]
   end
 
   def self.credit(card_number)
     path = full_path('/balance_credit/:card_number', card_number)
-    result = Typhoeous.post(path)
-    data = JSON.parse(result)
+    result = Typhoeus.post(path)
+    data = JSON.parse(result.body)
     data[:balance]
   end
 

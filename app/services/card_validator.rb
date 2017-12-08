@@ -4,8 +4,8 @@ module CardValidator
 
   def self.validate(card_number)
     path = full_path('/validate/:card_number', card_number)
-    result = Typhoeous.get(path)
-    data = JSON.parse(result)
+    result = Typhoeus.get(path)
+    data = JSON.parse(result.body)
     data[:card_number] ? true : false
   end
 
