@@ -11,7 +11,7 @@ module CardValidator
     path = full_path('/validate/:card_number', card_number)
     result = Typhoeus.get(path)
     data = JSON.parse(result.body)
-    data[:card_number] ? true : false
+    data["card_number"] ? true : false
   end
 
   private

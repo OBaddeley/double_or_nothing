@@ -13,7 +13,7 @@ module PointsBalance
     path = full_path('/balance_debit/:card_number', card_number)
     result = Typhoeus.post(path)
     data = JSON.parse(result.body)
-    data[:balance]
+    data["balance"]
   end
 
   #The endpoint called here will credit the points balance to zero.
@@ -27,7 +27,7 @@ module PointsBalance
     path = full_path('/balance_credit/:card_number', card_number)
     result = Typhoeus.post(path)
     data = JSON.parse(result.body)
-    data[:balance]
+    data["balance"]
   end
 
   private
