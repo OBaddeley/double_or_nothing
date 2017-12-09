@@ -1,0 +1,25 @@
+// Place all the styles related to the Game controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.game {
+  text-align: center;
+  font-family: sans-serif;
+}
+
+.notice {
+  background-color: red;
+}
+
+.game_header {
+  background-color: lightblue;
+}
+
+.button {
+    text-decoration: none;
+    color: black;
+    background: lightblue;
+    padding: 10px 20px;
+    display: inline-block;
+    text-transform: uppercase;
+    border-radius: 5px;
+}

@@ -1,0 +1,36 @@
+<div class="center game">
+  <div class="game_header">
+    <h1>Double or Nothing!</h1>
+    <p>Roll an even number and you will double your points!!</p>
+    <p>Roll an odd number and you will lose all your points :( </p>
+  </div>
+  <% if !params[:locals] %>
+    <%= form_tag({controller: "game", action: "validate"}, method: "get") do %>
+      <%= label_tag(:card_number, "Please enter your card number:") %>
+      <%= text_field_tag(:card_number) %>
+      <%= submit_tag("Lets Play!") %>
+    <% end %>
+  <% end %>
+
+  <% if flash[:notice] %>
+     <div class="notice"><%= flash[:notice] %></div>
+   <% end %>
+
+  <% if params[:locals] %>
+    <% if losing_role?(params[:locals]) %>
+      <div> You rolled a <%= params[:locals][:die_roll] %> </div>
+      <div> Your balance is now <%= params[:locals][:balance] %> </div>
+      <div> No more rolls for you </div>
+    <% elsif winning_role?(params[:locals]) %>
+      <div> You rolled a <%= params[:locals][:die_roll] %> </div>
+      <div> Your balance is now <%= params[:locals][:balance] %> </div>
+      <div>Try again!</div>
+      <%= link_to "Roll the die", game_play_path(card_number: params[:locals][:card_number]), class: "button" %>
+    <% elsif params[:locals][:card_number] %>
+      <h2>Woo lets roll!</h2>
+      <%= link_to "Roll the die", game_play_path(card_number: params[:locals][:card_number]), class: "button" %>
+    <% else %>
+      <div class="two">Sorry your card is not valid</div>
+    <% end %>
+  <% end %>
+</div>
